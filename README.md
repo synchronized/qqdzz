@@ -1,16 +1,19 @@
-> 建议别再参考本项目代码，只是照搬《百万在线》这本书籍的源码。项目的提交、编码、逻辑都有欠缺，可关注后续项目。
-
 # 《球球大作战》
 基于Skynet框架开发服务端 
 
 
-## 构建
+## 构建  
 
 1. `git clone https://gitee.com/Cauchy_AQ/qqdzz.git`
-2. `执行 service/mysql/test_db.sql`
+2. mysql服务中执行 `service/mysql/qqdzz.sql` 文件，配置详情见 `etc/config.node1`
 
-## 测试
+## 测试  
 
+### 服务端  
+1. `make build`
+2. `make node1`
+
+### 客户端  
 1. `telnet 127.0.0.1 8001`
 2. `register cauchy 123 1`
 3. `login cauchy 123 1`
