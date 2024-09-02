@@ -12,7 +12,7 @@ help:
 LUA_CLIB_PATH ?= luaclib
 LUA_INCLUDE_DIR ?= skynet/3rd/lua
 
-build: 3rd skynet
+build: install_protoc 3rd skynet 
 
 3rd: 
 	git submodule update --init 
@@ -23,11 +23,19 @@ skynet:
 	git submodule update --init
 	cd skynet && $(MAKE) linux 
 
-node1:
+proto:
+	@protoc -I./storage/ --descriptor_set_out=storage/storage.pb $(wildcard storage/*.proto)
+	@protoc -I./proto/ proto/Command.proto  -oproto/Command.pb
+
+node1: proto
 	@./skynet/skynet etc/config.node1
 
 console:
 	@telnet 127.0.0.1 4040
 
 clean:
-	rm -f $(LUA_CLIB_PATH)/*.so
+	@rm -f $(LUA_CLIB_PATH)/*.so
+
+install_protoc:
+	sudo apt update
+	sudo apt install -y protobuf-compiler
