@@ -1,5 +1,3 @@
-#!/usr/local/bin/lua
-
 --[[
 --  1. client conn msg: 连接信息
 --  2. aleady login player msg: 玩家信息
@@ -58,9 +56,7 @@ local str_unpack = function(msgstr)
         end 
     end 
     ]]
-
-    -- 2023年4月15日0时15分：更换新方式进行解析指令。
-    -- 书上那个用string.match真垃圾
+    
     for w in string.gmatch(msgstr, "(%S+)") do 
         table.insert(msg, w)
     end

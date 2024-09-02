@@ -1,8 +1,12 @@
 local skynet = require "skynet"
 local s = require "service"
 
-local MAX_POOL_SIZE = 100 -- 连接池大小
-local CONNECTION_TIMEOUT = 1000 -- 连接超时时间
+local max_pool_size = tonumber(skynet.getenv("MYSQL_POOL_SIZE")) or 100
+local connection_timeout = tonumber(skynet.getenv("MYSQL_CONN_TIMEOUT")) or 100
+local user = skynet.getenv("MYSQL_USER") or "root"
+local pwd  = skynet.getenv("MYSQL_PWD") or "root"
+local db_name = skynet.getenv("MYSQL_DATABASE") or "qqdzz"
+local ip_addr = skynet.getenv("MYSQL_IP_ADDR") or "127.0.0.1"
 
 local pool -- 连接池
 
@@ -11,17 +15,17 @@ local function create_pool()
     pool.idle = {} -- 空闲连接队列
     pool.busy = {} -- 忙碌连接队列
     pool.size = 0 -- 当前连接数
-    pool.max_size = MAX_POOL_SIZE -- 最大连接数
-    pool.timeout = CONNECTION_TIMEOUT -- 连接超时时间
+    pool.max_size = max_pool_size -- 最大连接数
+    pool.timeout = connection_timeout -- 连接超时时间
 end
 
 local function get_mysql()
     local mysql_conf = {
-        host = "127.0.0.1",
+        host = ip_addr,
         port = 3306,
-        database = "qqdzz",
-        user = "root",
-        password = "root",
+        database = db_name,
+        user = user,
+        password = pwd,
         max_packet_size = 1024 * 1024
     }
     return mysql.connect(mysql_conf)
