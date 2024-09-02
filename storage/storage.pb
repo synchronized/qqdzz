@@ -1,37 +1,4 @@
 
-þ
-UserInfo.proto"ã
-UserInfo
-user_id (RuserId
-username (	Rusername
-password (	Rpassword
-email (	Remail
-level (Rlevel
-
-experience (R
-experience
-coin (Rcoin&
-last_login_time (RlastLoginTimebproto3
-Ž
-GamePlayerState.proto"ì
-GamePlayerState
-user_id (	RuserId
-ball_id (	RballId
-x (Rx
-y (Ry
-hp (Rhp
-mp (Rmp
-score (Rscore
-kill_num (RkillNum
-	death_num	 (RdeathNum
-
-skill_list
- (	R	skillListbproto3
- 
-GameBattleState.protoGamePlayerState.proto"h
-GameBattleState
-room_id (	RroomId<
-player_state_list (2.GamePlayerStateRplayerStateListbproto3
 ô
 BallInfo.proto"Ù
 BallInfo
@@ -59,16 +26,6 @@ receiverId'
 message_content (	RmessageContent!
 message_type (RmessageType
 	send_time (RsendTimebproto3
-á
-MapInfo.proto"Ç
-MapInfo
-map_id (	RmapId
-map_name (	RmapName
-	map_width (RmapWidth
-
-map_height (R	mapHeight#
-brick_texture (	RbrickTexture)
-obstacle_texture (	RobstacleTexturebproto3
 ö
 FriendInfo.proto"Ù
 
@@ -80,6 +37,39 @@ friendName#
 friend_level (RfriendLevel(
 friend_vip_level (RfriendVipLevel
 	is_online (RisOnlinebproto3
+Ž
+GamePlayerState.proto"ì
+GamePlayerState
+user_id (	RuserId
+ball_id (	RballId
+x (Rx
+y (Ry
+hp (Rhp
+mp (Rmp
+score (Rscore
+kill_num (RkillNum
+	death_num	 (RdeathNum
+
+skill_list
+ (	R	skillListbproto3
+ 
+GameBattleState.protoGamePlayerState.proto"h
+GameBattleState
+room_id (	RroomId<
+player_state_list (2.GamePlayerStateRplayerStateListbproto3
+þ
+UserInfo.proto"ã
+UserInfo
+user_id (RuserId
+username (	Rusername
+password (	Rpassword
+email (	Remail
+level (Rlevel
+
+experience (R
+experience
+coin (Rcoin&
+last_login_time (RlastLoginTimebproto3
 ð
 GameRoom.protoUserInfo.proto"Å
 GameRoom
@@ -92,14 +82,6 @@ playerList
 roomStatus
 max_players (R
 maxPlayersbproto3
-Ú
-SettingInfo.proto"¼
-SettingInfo
-user_id (	RuserId
-is_sound_on (R	isSoundOn
-is_music_on (R	isMusicOn&
-is_vibration_on (RisVibrationOn,
-is_notification_on (RisNotificationOnbproto3
 ¤
 GameRoomState.protoUserInfo.protoBallInfo.proto"ä
 GameRoomState
@@ -125,3 +107,21 @@ gameStatusbproto3
 is_rewarded (R
 isRewarded
 time	 (	Rtimebproto3
+á
+MapInfo.proto"Ç
+MapInfo
+map_id (	RmapId
+map_name (	RmapName
+	map_width (RmapWidth
+
+map_height (R	mapHeight#
+brick_texture (	RbrickTexture)
+obstacle_texture (	RobstacleTexturebproto3
+Ú
+SettingInfo.proto"¼
+SettingInfo
+user_id (	RuserId
+is_sound_on (R	isSoundOn
+is_music_on (R	isMusicOn&
+is_vibration_on (RisVibrationOn,
+is_notification_on (RisNotificationOnbproto3
