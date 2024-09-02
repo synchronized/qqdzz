@@ -1,0 +1,7 @@
+include "config.path"
+
+thread = 4
+bootstrap = "snlua bootstrap"
+start = "main"
+harbor = 0
+node = "node1"

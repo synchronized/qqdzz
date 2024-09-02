@@ -1,0 +1,233 @@
+syntax = "proto3";
+
+package CMD;
+
+message Request {
+    enum CommandType {
+        LOGIN = 0;
+        REGISTER = 1;
+        ENTER_SCENE = 2; 
+        LEAVE_SCENE = 3;
+        CREATE_SCENE = 4; 
+        END_GAME = 5; 
+        CHAT = 6; 
+        INVITE_TO_GAME = 7;
+        BLOCK_USER = 8;
+        UNBLOCK_USER = 9;
+        ADD_FRIEND = 10;
+        DEL_FRIEND = 11;
+        MAIL_VIEW = 12;
+        MAIL_REPLY = 13;
+        MAIL_SEND = 14;
+        IS_FRIEND = 15;
+        MAIL_DEL = 16;
+        LIST_FRIEND = 17;
+        LIST_CHAT = 18;
+
+        w = 19;
+        s = 20;
+        a = 21;
+        d = 22;
+        c = 23; 
+        m = 24;
+
+        ERROR = 504;
+    }
+    CommandType type = 1;
+    bytes data = 2;
+}
+
+message ErrorRequest {
+    string message = 1;  
+}
+
+// 1. 登录指令 
+message LoginRequest {
+    string username = 1; 
+    string password = 2;
+    int32 userid = 3;
+}
+
+message LoginResponse {
+    string token = 1;
+}
+
+// 2. 注册指令
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+    int32 userid = 3;
+    string email = 4; 
+}
+
+message RegisterResponse {
+    string message = 1; 
+}
+
+// 3. 进入场景
+message EnterSceneRequest {
+    string sceneid = 1;
+}
+
+message EnterSceneResponse {
+    string message = 1;
+}
+
+// 4. 离开场景
+message LeaveSceneRequest {
+    string sceneid = 1;
+}
+
+message LeaveSceneResponse {
+    string message = 1;
+}
+
+// 5. 创建场景
+message CreateSceneRequest {
+    string sceneid = 1;
+    int32 max_player_count = 2;
+}
+
+message CreateSceneResponse {
+    string message = 1;
+}
+
+// 6. 结束游戏
+message EndGameRequest {
+    string sceneid = 1; // game_id
+}
+
+message EndGameResponse {
+    string message = 1;
+}
+
+// 7. 聊天消息
+message ChatRequest {
+    int32 obj_id = 1; // 聊天对象，0大厅，1～好友
+    string message = 2;
+    string channel = 3; // 设置聊天频道
+}
+
+message ChatResponse {
+    string message = 1;
+}
+
+// 8. 邀请好友
+message InviteToGameRequest {
+    string friend_username = 1;
+    int32 friend_userid = 2; 
+    string sceneid = 3; // game_id
+}
+
+message InviteToGameResponse {
+    string message = 1;
+}
+
+// 9. 封禁用户
+message BlockUserRequest {
+    string username = 1;
+    int32 userid = 2;
+}
+
+message BlockUserResponse {
+    string message = 1;
+}
+
+// 10. 解封用户
+message UnblockUserRequest {
+    string username = 1; 
+    int32 userid = 2;
+} 
+
+message UnblockUserResponse {
+    string message = 1; 
+}
+
+// 11. 添加好友
+message AddFriendRequest {
+    int32 friend_id = 1;
+    string message = 2; // 验证消息
+    int32 user_id = 3; // 自己id，不用附带进cmd。用于推送给对方邮件中，进行消息识别。
+}
+
+message AddFriendResponse {
+    string message = 1;
+}
+
+// 12. 删除好友
+message DelFriendRequest {
+    int32 friend_id = 1;
+    string message = 2;
+}
+
+message DelFriendResponse {
+    string message = 1;
+}
+
+// 13. 确认好友
+message SureFriendResponse {
+    string message = 1; // yes, no 
+}
+
+// 查看邮件
+message MailViewRequest {
+    int32 mail_id = 1; // nil or 0: all; 1~: mailid
+}
+
+// 邮件回复
+message MailReplyRequest {
+    int32 mail_id = 1; 
+    string message = 2;
+}
+
+// 邮件发送
+message MailSendRequest {
+    int32 to = 1;
+    string message = 2;
+    int32 channel = 3;
+    int32 from = 4;
+}
+
+// 询问是否是好友
+message IsFriendRequest {
+    int32 friend_id = 1;  
+}
+
+// 删除邮件
+message MailDelRequest {
+    int32 mail_id = 1;
+}
+
+// 查看好友列表
+message ListFriendRequest {
+    int32 list_type = 1; // 好友列表分类型，家人.... 
+}
+
+// 查看聊天列表 
+message ListChatRequest {
+    int32 list_type = 1; // 大厅聊天；好友聊天
+}
+
+message wRequest {
+    int32 step = 1;
+}
+
+message sRequest {
+    int32 step = 1;
+}
+
+message aRequest {
+    int32 step = 1;
+}
+
+message dRequest {
+    int32 step = 1;
+}
+
+message cRequest {
+    int32 range = 1;  // 0/nil: AOI; 1~: 全局
+}
+
+message mRequest {
+    int32 range = 1; // 0/nil: AOI; 1~: 全局:w
+}
