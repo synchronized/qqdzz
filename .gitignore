@@ -1,2 +1,3 @@
 luaclib/
-*.pb
+storage/*.pb
+proto/*.pb
